@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+    <name>System - Google Analytics</name>
+    <author>Peter Bui</author>
+    <creationDate>19th April 2010</creationDate>
+    <authorEmail>mail@pbwebdev.com.au</authorEmail>
+    <authorUrl>https://pbwebdev.com</authorUrl>
+    <version>5.0</version>
+    <copyright>Copyright (c) 2020 PB Web Development. All rights reserved.</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <description>
+        <![CDATA[
+        <p style="text-align:left">
+            Updated to use Global Site Tag (gtag.js) version of Google Analytics and Google Tag Manager. According to Google, the universal and asynchronous versions may no longer work.
+        </p>
+        <p style="text-align:left">
+            This plugin will allow you to use both or either methods, Google Analytics global site tag, or Google Tag Manager. We've also included the HTML meta tag method of verifying your websites in Google Webmaster Console.
+        </p>
+
+        <h2 style="text-align:left">Upgrade to PRO</h2>
+
+        <p style="text-align:left">
+        You can also upgrade to <a href="http://nicheextensions.com/extensions/google-analytics-joomla/" taget="_blank"><strong>Google Analytics PRO</strong></a> for more features and fine tuning of your analytics.
+        </p>
+
+        <h2 style="text-align:left">Documentation</h2>
+        <p style="text-align:left">
+            Read the documentation at: <a href="https://nicheextensions.com/resourses/219-google-analytics-joomla/" target="_blank">https://nicheextensions.com/resourses/219-google-analytics-joomla/</a> for more
+            information.
+        </p>
+
+        <h2 style="text-align:left">An Overview</h2>
+
+        <iframe width="100%" height="auto" src="https://www.youtube.com/embed/58QMSW5bbCs" frameborder="0" allowfullscreen></iframe>
+
+        <h2 style="text-align:left">FAQs</h2>
+        <h3 style="text-align:left">Why doesn't Google say it can't detect my analytics code when I can clearly see the code on the website when inspecting the code?</h3>
+        <p style="text-align:left">
+        This usually happens when the information is sent to Google before the plugin was enabled and is being cached. Clear your website caches, clear your browser cache and test. If that fails, check back in 12 hours and test for live traffic. Make sure you also check the ID for any spaces before or after the ID as this can also cause issues. Perhaps we'll add in space filtering.</p>
+        <h3 style="text-align:left">How can I be certain that the information is being passed through?</h3>
+        <p style="text-align:left">
+        You can also use the Google analytics Real Time tracking to see if the data is coming in or not. If you see active users on the site with the real time data then the information is coming in to Google Analytics from your website.</p>
+        ]]>
+    </description>
+    <files>
+        <filename plugin="GoogleAnalytics">GoogleAnalytics.php</filename>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="Basic">
+                <field name="verify"
+                       type="text"
+                       default=""
+                       label="GAANALYTICS_VERIFY_LABEL"
+                       description="e.g. _iGCBz83SBjL0hfqQXcYHGwaoXkzjYJOa_YWEcHb. This code can be found in your Google Web Console account."></field>
+                <field name="trackingID"
+                       type="text"
+                       default=""
+                       label="Google Analytics tracking ID."
+                       description="e.g. UA-12345-67. This code can be found in your Google Analytics account.
+                Your site will not be tracked unless this code is entered."></field>
+                <field name="containerID"
+                       type="text"
+                       default=""
+                       label="Google Tag Manager container ID."
+                       description="e.g. GTM-XXXXXXX."></field>
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+        <server type="extension" priority="1" name="Niche Extensions - Google Analytics Joomla">https://joomlaupdates.nicheextensions.com/updates/google-analytics-joomla.xml</server>
+    </updateservers>
+</extension>
