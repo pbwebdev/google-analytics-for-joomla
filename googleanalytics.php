@@ -2,7 +2,7 @@
 /**
  * @version    $version 5.0 Peter Bui  $
  * @copyright    Copyright (C) 2020 PB Web Development. All rights reserved.
- * @license    GNU/GPL, see LICENSE.php
+ * @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  * Updated    6th September 2020
  *
  * Twitter: @astroboysoup

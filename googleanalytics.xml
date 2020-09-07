@@ -5,7 +5,7 @@
     <creationDate>19th April 2010</creationDate>
     <authorEmail>mail@pbwebdev.com.au</authorEmail>
     <authorUrl>https://pbwebdev.com</authorUrl>
-    <version>5.0</version>
+    <version>5.0.0</version>
     <copyright>Copyright (c) 2020 PB Web Development. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <description>
@@ -43,27 +43,19 @@
         ]]>
     </description>
     <files>
-        <filename plugin="GoogleAnalytics">GoogleAnalytics.php</filename>
+        <filename plugin="GoogleAnalytics">googleanalytics.php</filename>
+        <filename>index.html</filename>
+        <folder>language</folder>
     </files>
+    <languages>
+        <language tag="en-GB">language/en-GB.plg_system_googleanalytics.ini</language>
+    </languages>
     <config>
         <fields name="params">
             <fieldset name="Basic">
-                <field name="verify"
-                       type="text"
-                       default=""
-                       label="GAANALYTICS_VERIFY_LABEL"
-                       description="e.g. _iGCBz83SBjL0hfqQXcYHGwaoXkzjYJOa_YWEcHb. This code can be found in your Google Web Console account."></field>
-                <field name="trackingID"
-                       type="text"
-                       default=""
-                       label="Google Analytics tracking ID."
-                       description="e.g. UA-12345-67. This code can be found in your Google Analytics account.
-                Your site will not be tracked unless this code is entered."></field>
-                <field name="containerID"
-                       type="text"
-                       default=""
-                       label="Google Tag Manager container ID."
-                       description="e.g. GTM-XXXXXXX."></field>
+                <field name="verify" type="text" default="" label="GAANALYTICS_VERIFY_LABEL"  description="GAANALYTICS_VERIFY_DESCRIPTION"></field>
+                <field name="trackingID" type="text" default="" label="GAANALYTICS_TRACKINGID_LABEL" description="GAANALYTICS_TRACKINGID_DESCRIPTION"></field>
+                <field name="containerID" type="text" default="" label="GAANALYTICS_CONTAINERID_LABEL" description="GAANALYTICS_CONTAINERID_DESCRIPTION"></field>
             </fieldset>
         </fields>
     </config>
