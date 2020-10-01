@@ -5,7 +5,7 @@
     <creationDate>19th April 2010</creationDate>
     <authorEmail>mail@pbwebdev.com.au</authorEmail>
     <authorUrl>https://pbwebdev.com</authorUrl>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
     <copyright>Copyright (c) 2020 PB Web Development. All rights reserved.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <description>
@@ -43,12 +43,12 @@
         ]]>
     </description>
     <files>
-        <filename plugin="GoogleAnalytics">googleanalytics.php</filename>
+        <filename plugin="GoogleAnalytics">GoogleAnalytics.php</filename>
         <filename>index.html</filename>
         <folder>language</folder>
     </files>
     <languages>
-        <language tag="en-GB">language/en-GB.plg_system_googleanalytics.ini</language>
+        <language tag="en-GB">language/en-GB.plg_system_GoogleAnalytics.ini</language>
     </languages>
     <config>
         <fields name="params">

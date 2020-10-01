@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    $version 5.0 Peter Bui  $
+ * @version    $version 5.0.1 Peter Bui  $
  * @copyright    Copyright (C) 2020 PB Web Development. All rights reserved.
  * @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  * Updated    6th September 2020
@@ -40,19 +40,19 @@ class plgSystemGoogleAnalytics extends JPlugin {
 	function onBeforeCompileHead()
 	{
 		$this->document = JFactory::getDocument();
-		if ($this->app->isAdmin() || $this->document->getType() != 'html') {
-			return true;
+		if ($this->app->isClient('administrator') || $this->document->getType() != 'html') {
+			return;
 		}
 
-		if($this->params->get('verify', null)){
+		if($this->params->get('verify')){
 			$this->output .= $this->webmasterVerify();
 		}
 
-		if($this->params->get('trackingID', null)) {
+		if($this->params->get('trackingID')) {
 			$this->output .= $this->googleAnalyticsTag();
 		}
 
-		if($this->params->get('containerID', null)) {
+		if($this->params->get('containerID')) {
 			$this->output .= $this->googleTagManager();
 		}
 
@@ -61,29 +61,29 @@ class plgSystemGoogleAnalytics extends JPlugin {
 
 	function onAfterRender()
 	{
-		if ($this->app->isAdmin() || $this->document->getType() != 'html') {
-			return true;
+		if ($this->app->isClient('administrator') || $this->document->getType() != 'html') {
+			return;
 		}
 
-		if($this->params->get('containerID', null)) {
+		if($this->params->get('containerID')) {
 			$buffer = JFactory::getApplication()->getBody();
 			$noJSOutput = '
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$this->params->get('containerID').'" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
 			$buffer= str_ireplace('</body>',$noJSOutput.'</body>',$buffer);
 			JFactory::getApplication()->setBody($buffer);
 		}
-		return true;
+		return;
 	}
 
 	private function webmasterVerify() {
-		$this->verify = $this->params->get('verify', null);
+		$this->verify = $this->params->get('verify');
 		$this->buffer = '<meta name="google-site-verification" content="'.$this->verify.'" />
 		';
 		return $this->buffer;
 	}
 
 	private function googleAnalyticsTag() {
-		$this->trackingID = $this->params->get('trackingID', null);
+		$this->trackingID = $this->params->get('trackingID');
 		$this->buffer = '
 	<script async src="https://www.googletagmanager.com/gtag/js?id='.$this->trackingID.'"></script>
 	<script>
@@ -97,7 +97,7 @@ class plgSystemGoogleAnalytics extends JPlugin {
 	}
 
 	private function googleTagManager() {
-		$this->containerID = $this->params->get('containerID', null);
+		$this->containerID = $this->params->get('containerID');
 		$this->buffer = '
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
 	new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
