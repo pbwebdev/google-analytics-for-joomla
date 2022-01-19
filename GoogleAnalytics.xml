@@ -43,12 +43,12 @@
         ]]>
     </description>
     <files>
-        <filename plugin="GoogleAnalytics">GoogleAnalytics.php</filename>
+        <filename plugin="googleanalytics">googleanalytics.php</filename>
         <filename>index.html</filename>
         <folder>language</folder>
     </files>
     <languages>
-        <language tag="en-GB">language/en-GB.plg_system_GoogleAnalytics.ini</language>
+        <language tag="en-GB">language/en-GB.plg_system_googleanalytics.ini</language>
     </languages>
     <config>
         <fields name="params">

@@ -39,20 +39,23 @@ class plgSystemGoogleAnalytics extends JPlugin {
 	//Generate all the output
 	function onBeforeCompileHead()
 	{
+		$plugin = JPluginHelper::getPlugin('system', 'googleanalytics');
+		$Pramas = new JRegistry($plugin->params);
+
 		$this->document = JFactory::getDocument();
 		if ($this->app->isClient('administrator') || $this->document->getType() != 'html') {
 			return;
 		}
 
-		if($this->params->get('verify')){
+		if($Pramas->get('verify')){
 			$this->output .= $this->webmasterVerify();
 		}
 
-		if($this->params->get('trackingID')) {
+		if($Pramas->get('trackingID')) {
 			$this->output .= $this->googleAnalyticsTag();
 		}
 
-		if($this->params->get('containerID')) {
+		if($Pramas->get('containerID')) {
 			$this->output .= $this->googleTagManager();
 		}
 
@@ -61,14 +64,17 @@ class plgSystemGoogleAnalytics extends JPlugin {
 
 	function onAfterRender()
 	{
+		$plugin = JPluginHelper::getPlugin('system', 'googleanalytics');
+		$Pramas = new JRegistry($plugin->params);
+
 		if ($this->app->isClient('administrator') || $this->document->getType() != 'html') {
 			return;
 		}
 
-		if($this->params->get('containerID')) {
+		if($Pramas->get('containerID')) {
 			$buffer = JFactory::getApplication()->getBody();
 			$noJSOutput = '
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$this->params->get('containerID').'" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$Pramas->get('containerID').'" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
 			$buffer= str_ireplace('</body>',$noJSOutput.'</body>',$buffer);
 			JFactory::getApplication()->setBody($buffer);
 		}
@@ -76,14 +82,20 @@ class plgSystemGoogleAnalytics extends JPlugin {
 	}
 
 	private function webmasterVerify() {
-		$this->verify = $this->params->get('verify');
+		$plugin = JPluginHelper::getPlugin('system', 'googleanalytics');
+		$Pramas = new JRegistry($plugin->params);
+
+		$this->verify = $Pramas->get('verify');
 		$this->buffer = '<meta name="google-site-verification" content="'.$this->verify.'" />
 		';
 		return $this->buffer;
 	}
 
 	private function googleAnalyticsTag() {
-		$this->trackingID = $this->params->get('trackingID');
+		$plugin = JPluginHelper::getPlugin('system', 'googleanalytics');
+		$Pramas = new JRegistry($plugin->params);
+
+		$this->trackingID = $Pramas->get('trackingID');
 		$this->buffer = '
 	<script async src="https://www.googletagmanager.com/gtag/js?id='.$this->trackingID.'"></script>
 	<script>
@@ -94,10 +106,13 @@ class plgSystemGoogleAnalytics extends JPlugin {
 	</script>
 		';
 		return $this->buffer;
-	}
+	} 
 
 	private function googleTagManager() {
-		$this->containerID = $this->params->get('containerID');
+		$plugin = JPluginHelper::getPlugin('system', 'googleanalytics');
+		$Pramas = new JRegistry($plugin->params);
+
+		$this->containerID = $Pramas->get('containerID');
 		$this->buffer = '
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':
 	new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],
